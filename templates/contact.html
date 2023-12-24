@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+<div class="container">   
+    <div class="row">
+        <h3 style="text-align: center; font-family: Gill Sans;">Contact Us</h3>
+        <div class="col-md-8 mt-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.8649934196233!2d72.88991627406224!3d19.113577750794043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c92d5e58cdc9%3A0x94c2dec7f68a1d1b!2sBoomerang%20Building!5e0!3m2!1sen!2sin!4v1700487137193!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="col-md-4 mt-3">
+            <form method="POST" action="/create">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="Input1" class="form-label"><strong>Name:</strong></label>
+                    <input type="email" name="uname" class="form-control" id="Input1" placeholder="name@example.com">
+                </div><!--uname-->
+                <div class="mb-3">
+                <label for="Input2" class="form-label"><strong>Mobile No:</strong></label>
+                <input type="number" name="umob" class="form-control" id="Input2">
+                </div><!--mobile-->
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1"><strong>Query:</strong></label>
+                    <textarea class="form-control" name="uquery" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div><!--query-->
+                  <br>
+                <div class="mb-3">
+                <input type="submit" class="btn btn-danger" value="Ask your Query"/>
+              </div>
+              {% if success %}
+            <div class="alert alert-success">
+                {{success}}    
+            </div>
+            {% endif %}
+        </form>
+        </div>
+    </div>
+ </div>
+
+{% endblock 'main' %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+<!--product det start-->
+<div class="row mt-5">
+    {% for x in products %}
+    <div class="col-md-4">
+        <img src="{{x.pimage.url}}" width="100%" alt="product1"/>
+    </div>
+    <div class="col-md-7">
+        <p><strong>Product Name:</strong>&nbsp;&nbsp;&nbsp;{{x.name}}</p>
+        <p style="font-style: italic;"><strong>Price:</strong>&nbsp;&nbsp;&nbsp;Rs. {{x.price}}</p>
+        {% if x.cat == 1 %}
+            <p style="color: teal; text-decoration-line:overline; font-family:cursive;"><strong>Category:</strong>&nbsp;&nbsp;&nbsp;Jhumka</p>
+        {% elif x.cat == 2 %}
+            <p style="color: teal; text-decoration-line:overline; font-family:cursive;"><strong>Category:</strong>&nbsp;&nbsp;&nbsp;Necklace</p>
+        {% else %}
+            <p style="color: teal; text-decoration-line:overline; font-family:cursive;"><strong>Category:</strong>&nbsp;&nbsp;&nbsp;Braclet</p>
+        {% endif %}
+        <p style="font-family: monospace; color: purple; background-color:bisque;"><strong>Description:</strong>&nbsp;&nbsp;&nbsp;{{x.pdetails}}</p>&nbsp;&nbsp;&nbsp;
+        <br>
+        <a href="/addtocart/{{x.id}}"><button class="btn btn-danger">Add to Cart</button></a>&nbsp;&nbsp;&nbsp;
+        <a href="/viewcart"><button class="btn btn-danger">View Cart</button></a>&nbsp;&nbsp;&nbsp;
+        <a href="/home"><button class="btn btn-danger">Shop More</button></a>
+        <br>
+        {% if success %}
+            <div class="alert alert-success">
+                {{success}}    
+            </div>
+        {% endif %}
+        {% if msg %}
+            <div class="alert alert-danger">
+                {{msg}}
+            </div>
+        {% endif %}
+    </div>   
+    {% endfor %}
+</div>
+<!--product det ends-->
+
+{% endblock 'main' %}

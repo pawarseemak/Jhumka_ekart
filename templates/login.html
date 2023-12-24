@@ -1,0 +1,41 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="{% static 'asset/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <p><a href="/home" style="text-decoration: none; color: green; font-size: larger;"><i>Back to Home Page</i></a></p>
+            </div>
+             <div class="col-md-4 shadow mt-3 p-4 mx-auto bg-danger-subtle">
+                <h2 align="center">Login</h2>
+                {% if errmsg %}
+                    <div class="alert alert-danger">
+                        {{errmsg}}
+                    </div>
+                {% endif %}
+                <form method="POST" action="/login">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Input1" class="form-label"><strong>Username</strong></label>
+                        <input type="email" name="uname" class="form-control" id="Input1" placeholder="name@example.com">
+                    </div><!--uname-->
+                    <div class="mb-3">
+                    <label for="Input2" class="form-label"><strong>Password</strong></label>
+                    <input type="password" name="upass" class="form-control" id="Input2">
+                    </div><!--pass-->
+                    <div class="mb-3">
+                    <input type="submit" class="btn btn-danger" value="Login"/>
+                    Not an User?
+                    <a href="/register" style="text-decoration: none;">Register Here..!</a>
+                  </div>
+            </form> 
+        </div>
+    </div>
+</body>
+</html>
